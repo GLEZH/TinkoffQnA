@@ -1,10 +1,11 @@
-import numpy as np
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import LlamaIndex
 
+
 class VectorStore:
     def __init__(self):
-        self.embedding_model = HuggingFaceEmbeddings(model_name='gpt-4')  # Replace with actual model
+        self.embedding_model = HuggingFaceEmbeddings(
+            model_name='paraphrase-MiniLM-L6-v2')  # Замените на актуальную модель
         self.index = LlamaIndex()
 
     def embed_text(self, text):

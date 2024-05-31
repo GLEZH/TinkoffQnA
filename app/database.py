@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app.models import Base, Document
 
-DATABASE_URL = "sqlite:///./test.db"  # Replace with your database URL
+DATABASE_URL = "sqlite:///./test.db"  # Замените на ваш URL базы данных
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

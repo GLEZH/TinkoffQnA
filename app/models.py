@@ -1,8 +1,7 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, String, Text
 
 Base = declarative_base()
-
 
 class Document(Base):
     __tablename__ = "documents"

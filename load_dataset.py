@@ -4,7 +4,6 @@ from app.vector_store import VectorStore
 
 vector_store = VectorStore()
 
-
 def load_data(filepath: str):
     with open(filepath, 'r') as file:
         data = json.load(file)['data']
@@ -23,7 +22,6 @@ def load_data(filepath: str):
                 'parent_url': entry['parent_url']
             })
             vector_store.add_to_index(entry['description'], doc.id)
-
 
 if __name__ == "__main__":
     load_data('data/dataset.json')

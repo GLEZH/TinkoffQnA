@@ -1,8 +1,8 @@
 fastapi
 uvicorn
-torch
-transformers
-langchain
-llama-index
+gunicorn
 sqlalchemy
 pydantic
+requests
+langchain
+llamaindex
