@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+torch
+transformers
+langchain
+llama-index
+sqlalchemy
+pydantic
