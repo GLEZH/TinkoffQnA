@@ -10,9 +10,9 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 def create_db_and_tables():
     Base.metadata.create_all(bind=engine)
 
-def add_document(text, source):
+def add_document(doc_data):
     db = SessionLocal()
-    doc = Document(text=text, source=source)
+    doc = Document(**doc_data)
     db.add(doc)
     db.commit()
     db.refresh(doc)
