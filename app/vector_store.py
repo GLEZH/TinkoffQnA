@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 from app.database import SessionLocal, Document
 import gensim.downloader as api
 import numpy as np
-from config import API_KEY
+from app.config import API_KEY
 
 
 class VectorStore:

@@ -4,7 +4,7 @@ import json
 import requests
 from app.vector_store import VectorStore
 from app.database import init_db, SessionLocal, Document
-from config import API_KEY
+from app.config import API_KEY
 import os
 
 app = FastAPI()
