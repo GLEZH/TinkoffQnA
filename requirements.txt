@@ -1,8 +1,10 @@
-fastapi
+fastapi~=0.109.0
 uvicorn
 gunicorn
-sqlalchemy
-pydantic
-requests
+sqlalchemy~=2.0.25
+pydantic~=2.5.3
+requests~=2.32.3
 langchain
 llamaindex
+pgvector~=0.2.5
+openai~=1.30.5

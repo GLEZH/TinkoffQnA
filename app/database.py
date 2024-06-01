@@ -1,26 +1,21 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Column, Integer, String, Text, ARRAY
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from app.models import Base, Document
+from pgvector.sqlalchemy import Vector
+from config import DATABASE_URL
 
-DATABASE_URL = "sqlite:///./test.db"  # Замените на ваш URL базы данных
+Base = declarative_base()
+
+class Document(Base):
+    __tablename__ = "documents"
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True)
+    description = Column(Text)
+    url = Column(String)
+    embedding = Column(Vector(1536))
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-def create_db_and_tables():
+def init_db():
     Base.metadata.create_all(bind=engine)
-
-def add_document(doc_data):
-    db = SessionLocal()
-    doc = Document(**doc_data)
-    db.add(doc)
-    db.commit()
-    db.refresh(doc)
-    db.close()
-    return doc
-
-def get_document_by_id(doc_id):
-    db = SessionLocal()
-    doc = db.query(Document).filter(Document.id == doc_id).first()
-    db.close()
-    return doc
