@@ -1,16 +1,21 @@
+from sqlalchemy.orm import Session
 from sqlalchemy.sql import text
 from app.database import SessionLocal, Document
-import openai
+import gensim.downloader as api
+import numpy as np
 from config import API_KEY
 
 
 class VectorStore:
     def __init__(self):
-        openai.api_key = API_KEY
+        self.model = api.load("word2vec-google-news-300")  # Load pre-trained Word2Vec model
 
     def embed_text(self, text):
-        response = openai.Embedding.create(input=[text], model="text-embedding-ada-002")
-        return response["data"][0]["embedding"]
+        words = text.split()
+        word_vectors = [self.model[word] for word in words if word in self.model]
+        if not word_vectors:
+            return np.zeros(300)
+        return np.mean(word_vectors, axis=0)
 
     def add_to_index(self, title, description, url):
         embedding = self.embed_text(description)
@@ -30,7 +35,7 @@ class VectorStore:
                 ORDER BY distance ASC
                 LIMIT :top_n
             """),
-            {"query_vector": query_vector, "top_n": top_n}
+            {"query_vector": query_vector.tolist(), "top_n": top_n}
         ).fetchall()
         session.close()
         return result

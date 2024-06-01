@@ -7,4 +7,3 @@ requests~=2.32.3
 langchain
 llamaindex
 pgvector~=0.2.5
-openai~=1.30.5
