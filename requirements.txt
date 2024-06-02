@@ -1,8 +1,9 @@
-fastapi
+fastapi~=0.109.0
 uvicorn
-torch
-transformers
+gunicorn
+sqlalchemy~=2.0.25
+pydantic~=2.5.3
+requests~=2.32.3
 langchain
-llama-index
-sqlalchemy
-pydantic
+llamaindex
+pgvector~=0.2.5
